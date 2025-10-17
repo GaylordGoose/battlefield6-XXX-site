@@ -30,6 +30,91 @@
         </div>
       </div>
     </section>
+
+    <!-- 📰 Последние новости -->
+    <section class="news-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>ПОСЛЕДНИЕ НОВОСТИ</h2>
+          <div class="section-line"></div>
+        </div>
+        
+        <div class="news-grid">
+          <div class="news-card">
+            <div class="news-image"></div>
+            <div class="news-content">
+              <div class="news-date">15.12.2023</div>
+              <h3>Обновление баланса оружия</h3>
+              <p>Изменения в мете после последнего патча. Новые топовые сборки...</p>
+            </div>
+          </div>
+          
+          <div class="news-card">
+            <div class="news-image"></div>
+            <div class="news-content">
+              <div class="news-date">14.12.2023</div>
+              <h3>Новая карта в режиме штурм</h3>
+              <p>Добавлена карта "Разрушенный город". Тактика и лучшие позиции...</p>
+            </div>
+          </div>
+          
+          <div class="news-card">
+            <div class="news-image"></div>
+            <div class="news-content">
+              <div class="news-date">13.12.2023</div>
+              <h3>Ивент на выходные</h3>
+              <p>Удвоенный опыт за все достижения. Не пропусти возможность прокачаться...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🎯 Почему выбирают нас -->
+    <section class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>ПОЧЕМУ ВЫБИРАЮТ НАС</h2>
+          <div class="section-line"></div>
+        </div>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Актуальная мета</h3>
+            <p>Сборки обновляются после каждого патча. Всегда только актуальная информация от топовых игроков.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Проверено в бою</h3>
+            <p>Все гайды и сборки тестируются игроками топ-100 рейтинга. Только рабочее и эффективное.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🕒</div>
+            <h3>Мгновенные обновления</h3>
+            <p>Новости и изменения появляются в течение часа после выхода обновления игры.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 👥 Подвал -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">BF META HUB</div>
+          <p class="footer-text">Лучшие сборки и гайды по Battlefield 6</p>
+          
+          <div class="social-links">
+            <a href="#" class="social-link">VK</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Discord</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -55,6 +140,13 @@ body, html, #app {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+}
+
+/* Контейнер для секций */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* === Хедер === */
@@ -92,7 +184,7 @@ body, html, #app {
   color: #f97316;
 }
 
-/* === Герой-секция ОПТИМИЗИРОВАНА ДЛЯ 16:9 === */
+/* === Герой-секция === */
 .hero {
   position: relative;
   height: 100vh;
@@ -114,25 +206,9 @@ body, html, #app {
   height: 100vh;
   object-fit: cover;
   z-index: 0;
-  /* Оптимизация для 16:9 */
   min-width: 100%;
   min-height: 100%;
   object-position: center;
-}
-
-/* Специальные стили для соотношения 16:9 */
-@media (min-aspect-ratio: 16/9) {
-  .hero-video {
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-aspect-ratio: 16/9) {
-  .hero-video {
-    width: auto;
-    height: 100%;
-  }
 }
 
 .overlay {
@@ -207,6 +283,164 @@ body, html, #app {
   transform: scale(1.05);
 }
 
+/* === Секции заголовки === */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 42px;
+  color: #f97316;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.section-line {
+  width: 100px;
+  height: 3px;
+  background: #f97316;
+  margin: 0 auto;
+}
+
+/* === Секция новостей === */
+.news-section {
+  padding: 80px 0;
+  background: #0a0a0a;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.news-card {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+.news-image {
+  height: 200px;
+  background: linear-gradient(45deg, #1a1a1a, #f97316);
+  position: relative;
+}
+
+.news-image::after {
+  content: 'BF6';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: rgba(255,255,255,0.1);
+}
+
+.news-content {
+  padding: 25px;
+}
+
+.news-date {
+  color: #f97316;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.news-card h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.news-card p {
+  color: #ccc;
+  line-height: 1.5;
+}
+
+/* === Секция преимуществ === */
+.features-section {
+  padding: 80px 0;
+  background: #000;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 24px;
+  color: #f97316;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.feature-card p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* === Подвал === */
+.footer {
+  background: #0a0a0a;
+  padding: 50px 0;
+  border-top: 1px solid #333;
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 24px;
+  color: #f97316;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.footer-text {
+  color: #ccc;
+  margin-bottom: 25px;
+  font-size: 18px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.social-link {
+  color: #f97316;
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.social-link:hover {
+  color: #ff8a3d;
+}
+
 /* === Адаптивность === */
 @media (max-width: 1600px) {
   .overlay h1 {
@@ -239,6 +473,10 @@ body, html, #app {
   .overlay {
     padding: 50px 60px;
   }
+  
+  .section-header h2 {
+    font-size: 36px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -258,6 +496,14 @@ body, html, #app {
   .btn {
     width: 250px;
     margin: 0 auto;
+  }
+  
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -289,6 +535,15 @@ body, html, #app {
     font-size: 18px;
     padding: 12px 30px;
   }
+  
+  .section-header h2 {
+    font-size: 32px;
+  }
+  
+  .social-links {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
 
 /* ДОПОЛНИТЕЛЬНЫЕ ИСПРАВЛЕНИЯ ДЛЯ УДАЛЕНИЯ СЕРЫХ ПОЛОС */
@@ -302,15 +557,5 @@ body, html, #app {
   background: #000 !important;
   margin: 0 !important;
   padding: 0 !important;
-}
-
-/* Оптимизация для 16:9 мониторов */
-@media (min-width: 1920px) and (min-height: 1080px) {
-  .hero-video {
-    width: 100vw;
-    height: 56.25vw; /* 16:9 соотношение (9/16 = 0.5625) */
-    min-height: 100vh;
-    min-width: 177.78vh; /* 16:9 соотношение (16/9 = 1.7778) */
-  }
 }
 </style>
