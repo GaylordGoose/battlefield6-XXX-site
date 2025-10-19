@@ -1,11 +1,12 @@
 import { motion } from 'motion/react';
 import { Pause, ChevronDown, ArrowRight, Play } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export function Hero() {
   const [scrollY, setScrollY] = useState(0);
   const [isVideoPaused, setIsVideoPaused] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -13,18 +14,41 @@ export function Hero() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleVideoToggle = () => {
+    if (videoRef.current) {
+      if (isVideoPaused) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+      setIsVideoPaused(!isVideoPaused);
+    }
+  };
+
   return (
     <section className="relative h-screen overflow-hidden">
-      {/* Background Image with Parallax */}
+      {/* Background Video with Parallax */}
       <motion.div 
         className="absolute inset-0"
         style={{ y: scrollY * 0.5 }}
       >
-        <ImageWithFallback
-          src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXR0bGVmaWVsZCUyMHNvbGRpZXIlMjBjb21iYXR8ZW58MXx8fHwxNzYwNjk5MzU0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-          alt="Battlefield combat"
+        <video
+          ref={videoRef}
           className="w-full h-full object-cover scale-110"
-        />
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/video/bf6-bg.mp4" type="video/mp4" />
+          {/* Fallback image if video doesn't load */}
+          <ImageWithFallback
+            src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXR0bGVmaWVsZCUyMHNvbGRpZXIlMjBjb21iYXR8ZW58MXx8fHwxNzYwNjk5MzU0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            alt="Battlefield combat"
+            className="w-full h-full object-cover scale-110"
+          />
+        </video>
+        
         {/* Modern gradient overlay - lighter */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a1d23]/85 via-[#1a1d23]/70 to-[#1a1d23]"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1d23]/80 via-transparent to-[#1a1d23]/60"></div>
@@ -35,7 +59,7 @@ export function Hero() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        onClick={() => setIsVideoPaused(!isVideoPaused)}
+        onClick={handleVideoToggle}
         className="absolute top-28 right-8 z-20 w-12 h-12 bg-[#242831]/80 backdrop-blur-md rounded-lg border border-[#ea580c]/30 flex items-center justify-center hover:bg-[#ea580c] hover:border-[#ea580c] transition-all group"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}

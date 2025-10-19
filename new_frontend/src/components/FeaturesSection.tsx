@@ -53,7 +53,11 @@ const features = [
   }
 ];
 
-export function FeaturesSection() {
+interface FeaturesSectionProps {
+  onOpenSubmitModal: () => void;
+}
+
+export function FeaturesSection({ onOpenSubmitModal }: FeaturesSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -183,9 +187,10 @@ export function FeaturesSection() {
                   <span className="tracking-wider text-white uppercase">Discord сообщество</span>
                 </motion.button>
                 <motion.button
+                  onClick={onOpenSubmitModal}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-[#242831] border-2 border-[#ea580c]/30 hover:border-[#ea580c] hover:bg-[#2d3139] transition-all rounded-lg"
+                  className="px-8 py-4 bg-[#242831] border-2 border-[#ea580c]/30 hover:border-[#ea580c] hover:bg-[#2d3139] transition-all rounded-lg cursor-pointer"
                 >
                   <span className="tracking-wider text-gray-200 uppercase">Отправить свою сборку</span>
                 </motion.button>

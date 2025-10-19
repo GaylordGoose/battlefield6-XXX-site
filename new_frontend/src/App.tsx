@@ -17,6 +17,7 @@ import { AboutPage } from './components/AboutPage';
 import { ContactsPage } from './components/ContactsPage';
 import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
+import { SubmitLoadoutModal } from './components/SubmitLoadoutModal';
 
 type PageType = 
   | 'home' 
@@ -35,6 +36,7 @@ type PageType =
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
 
   // Simple routing based on hash
   useEffect(() => {
@@ -113,7 +115,7 @@ export default function App() {
             <Hero />
             <NewsSection />
             <GuidesSection />
-            <FeaturesSection />
+            <FeaturesSection onOpenSubmitModal={() => setIsSubmitModalOpen(true)} />
           </main>
         );
     }
@@ -143,6 +145,12 @@ export default function App() {
         {renderPage()}
         <Footer />
       </div>
+
+      {/* Modal for submitting loadouts */}
+      <SubmitLoadoutModal 
+        isOpen={isSubmitModalOpen}
+        onClose={() => setIsSubmitModalOpen(false)}
+      />
     </div>
   );
 }
